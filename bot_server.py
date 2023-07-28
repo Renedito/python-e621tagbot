@@ -1,19 +1,23 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from tags import tagsList
-from dotenv import load_dotenv
 import random
 import tweepy
 import os
 
-load_dotenv("D:\Documents\Github\python-e621tagbot\API_keys.env")
+# load_dotenv("D:\Documents\Github\python-e621tagbot\API_keys.env")
 
 client = tweepy.Client(
-    consumer_key = os.getenv("API_key"),
-    consumer_secret = os.getenv("API_key_secret"),
-    bearer_token = os.getenv("Bearer_token"),
-    access_token = os.getenv("Access_Token"),
-    access_token_secret = os.getenv("Access_Token_Secret")
+    consumer_key = os.environ.get("API_key"),
+    consumer_secret = os.environ.get("API_key_secret"),
+    bearer_token = os.environ.get("Bearer_token"),
+    access_token = os.environ.get("Access_Token"),
+    access_token_secret = os.environ.get("Access_Token_Secret")
 )
+print(client.consumer_key)
+print(client.consumer_secret)
+print(client.bearer_token)
+print(client.access_token)
+print(client.access_token_secret)
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -26,7 +30,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         # Define the content of the response
         random_entry = random.choice(tagsList)
-        client.create_tweet(text = random_entry)
+#       client.create_tweet(text = random_entry)
         self.wfile.write(random_entry.encode())
 
 def run_server(port=8000):
