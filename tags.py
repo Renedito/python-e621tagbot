@@ -1,15 +1,4 @@
-import random
-import pytwitter
-
-def select_random_entry(table):
-    if len(table) == 0:
-        return None
-
-#   random_entry = random.choice(table)
-    return random.choice(table)
-
-# Example usage
-table = [   "mammal",
+tagsList = [   "mammal",
             "look_at_my_dick_give_it_a_lick",
             "anthro",
             "elden_ring",
@@ -2062,5 +2051,3 @@ table = [   "mammal",
             "lamia",
             "colored_sketch",
             "small_penis"]
-random_entry = select_random_entry(table)
-print("Random entry:", random_entry)
